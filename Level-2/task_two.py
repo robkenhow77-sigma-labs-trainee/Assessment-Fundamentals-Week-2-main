@@ -1,7 +1,9 @@
+"""Datetime module"""
 from datetime import date, datetime
 
 
 class Assessment:
+    """Assessment class"""
     def __init__(self, name: str, type: str, score: float):
         self.name = name
         if type not in ['multiple-choice', 'technical', 'presentation']:
@@ -12,8 +14,8 @@ class Assessment:
         self.score = score
 
 
-
 class Trainee:
+    """Trainee class"""
     def __init__(self, name: str, email: str, date_of_birth: date):
         self.name = name
         self.email = email
@@ -33,51 +35,56 @@ class Trainee:
 
 
     def add_assessment(self, assessment: Assessment) -> None:
+        """adds an assessment object to assessment list"""
         if not isinstance(assessment, Assessment):
             raise TypeError("Invalid object")
         self.assessments.append(assessment)
 
 
     def get_assessment(self, name: str) -> Assessment | None:
+        """returns an assessment object if it is in the assessment list otherwise returns none"""
         for assessment in self.assessments:
             if assessment.name == name:
                 return assessment
         return None
-    
+
 
     def get_assessment_of_type(self, type: str) -> list[Assessment]:
+        """returns a list of assessments of a specific type"""
         return [assessment for assessment in self.assessments if assessment.type == type]
 
 
 class MultipleChoiceAssessment(Assessment):
+    """Multiple choice class"""
     def __init__(self, name, score):
         super().__init__(name = name, score = score, type = "multiple-choice")
 
 
-
     def calculate_score(self) -> float:
+        """Returns the adjusted assessment score"""
         return self.score * 0.7
 
 
 class TechnicalAssessment(Assessment):
+    """technical Assessment class"""
     def __init__(self, name, score):
         super().__init__(name = name, score = score, type = "technical")
 
 
     def calculate_score(self) -> float:
+        """Returns the adjusted assessment score"""
         return self.score
 
 
-
 class PresentationAssessment(Assessment):
+    """Multiple choice class"""
     def __init__(self, name, score):
         super().__init__(name = name, score = score, type = "presentation")
 
 
     def calculate_score(self) -> float:
+        """Returns the adjusted assessment score"""
         return self.score * 0.6
-
-
 
 
 if __name__ == "__main__":

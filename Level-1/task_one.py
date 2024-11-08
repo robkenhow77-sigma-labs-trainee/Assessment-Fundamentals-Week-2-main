@@ -1,7 +1,9 @@
+"""Datetime module"""
 from datetime import datetime, date
 
 
 class Assessment:
+    """Assessment class"""
     def __init__(self, name: str, type: str, score: float):
         self.name = name
         if type not in ['multiple-choice', 'technical', 'presentation']:
@@ -12,8 +14,8 @@ class Assessment:
         self.score = score
 
 
-
 class Trainee:
+    """Trainee class"""
     def __init__(self, name: str, email: str, date_of_birth: date):
         self.name = name
         self.email = email
@@ -31,18 +33,18 @@ class Trainee:
                 return year_difference
         return year_difference - 1
 
+
     def add_assessment(self, assessment: Assessment) -> None:
+        """adds an assessment object to assessment list"""
         self.assessments.append(assessment)
 
 
     def get_assessment(self, name: str) -> Assessment | None:
+        """returns an assessment object if it is in the assessment list otherwise returns none"""
         for assessment in self.assessments:
             if assessment.name == name:
                 return assessment
         return None
-
-
-
 
 
 if __name__ == "__main__":
